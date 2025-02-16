@@ -1,0 +1,148 @@
+    
+        .flex-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .share-button {
+            padding: 0.5rem 1rem;
+            color: white;
+            background-color: #2563eb;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        .share-drawer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+            z-index:1000
+
+        }
+
+        .drawer-content {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .post-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .post-snippet {
+            color: #4b5563;
+            margin-top: 0.5rem;
+        }
+
+        .share-options {
+            padding: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .share-options button {
+            padding: 0.5rem 1rem;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .email-button {
+            background-color: #d94645;
+        }
+
+        .x-button {
+            background-color: #000000; /* X&#39;s brand color */
+        }
+
+        .facebook-button {
+            background-color: #1877f2;
+        }
+
+        .pinterest-button {
+            background-color: #e60023;
+        }
+
+        .whatsapp-button {
+            background-color: #25d366;
+        }
+
+        .linkedin-button {
+            background-color: #0a66c2;
+        }
+
+        .reddit-button {
+            background-color: #ff4500;
+        }
+
+        .telegram-button {
+            background-color: #0088cc;
+        }
+
+        .copy-link-button {
+            background-color: #374151;
+        }
+
+        .link-content {
+            margin-top: 0.5rem;
+            color: #4b5563;
+            display: none;
+        }
+
+        .close-drawer {
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        /* Toast Notification Styles */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+        }
+  
