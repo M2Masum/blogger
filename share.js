@@ -5,7 +5,7 @@
         const overlay = document.getElementById('overlay');
         const toast = document.getElementById('toast');
 
-        const postUrl = encodeURIComponent(document.getElementById('link').innerText); // URL to share
+        const postUrl = document.getElementById('link').innerText; // URL to share
         const postTitle = encodeURIComponent(document.getElementById('postTitle').innerText); // Post title
         const postSnippet = encodeURIComponent(document.getElementById('postSnippet').innerText); // Post snippet
 
