@@ -76,52 +76,21 @@
     let formattedDate = "";
     let fullDate = "";
 
-    const datesMatch = postPublished === postUpdated;
-
     if (postPublished && postUpdated) {
-      // If dates match, show only formatted published date
-      formattedDate = formatDateTime(postPublished);
-      fullDate = `Published: ${formatDateTime(postPublished, true)}`;
-      if (!datesMatch) {
-        fullDate += ` | Updated: ${formatDateTime(postUpdated, true)}`;
-      }
+      // Show formatted updated date
+      formattedDate = formatDateTime(postUpdated);
+      // Show both full published and updated date
+      fullDate = `Published: ${formatDateTime(postPublished, true)} | Updated: ${formatDateTime(postUpdated, true)}`;
     } else if (postPublished) {
-      // Show formatted published date if no update date
+      // Show formatted published date
       formattedDate = formatDateTime(postPublished);
+      // Show full published date
       fullDate = `Published: ${formatDateTime(postPublished, true)}`;
     }
 
     // Insert into the correct spans
     postElement.querySelector(".formatted-date").textContent = formattedDate;
     postElement.querySelector(".full-date").textContent = fullDate;
-
-    // Show full date on hover or click
-    const formattedDateElement = postElement.querySelector('.formatted-date');
-    const fullDateElement = postElement.querySelector('.full-date');
-
-    // Hover to show full date
-    formattedDateElement.addEventListener('mouseenter', () => {
-      fullDateElement.style.display = 'block';
-    });
-
-    // Hover out to hide full date
-    formattedDateElement.addEventListener('mouseleave', () => {
-      fullDateElement.style.display = 'none';
-    });
-
-    // Click to toggle full date visibility
-    formattedDateElement.addEventListener('click', () => {
-      const isVisible = fullDateElement.style.display === 'block';
-      fullDateElement.style.display = isVisible ? 'none' : 'block';
-    });
-
-    // Hide updated full date if dates match
-    if (datesMatch) {
-      const updateFullDateElement = postElement.querySelector('.updated-full-date');
-      if (updateFullDateElement) {
-        updateFullDateElement.style.display = 'none';
-      }
-    }
   }
 
   function processVisiblePosts() {
