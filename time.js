@@ -1,4 +1,4 @@
-<script>
+
   function formatTimeAgo(date) {
     const now = new Date();
     const diffMs = now - date;
@@ -131,4 +131,4 @@
   observer.observe(document.body, { childList: true, subtree: true });
 
   document.addEventListener("DOMContentLoaded", processVisiblePosts);
-</script>
+
