@@ -73,25 +73,23 @@
     const postPublished = post.published ? post.published.$t : null;
     const postUpdated = post.updated ? post.updated.$t : null;
 
-    let displayDate, fullDate;
+    let formattedDate = "";
+    let fullDate = "";
+
     if (postPublished && postUpdated) {
-      // Format only the UPDATED date if both exist
-      displayDate = formatDateTime(postUpdated);
-      fullDate = formatDateTime(postUpdated, true);
+      // Show formatted updated date
+      formattedDate = formatDateTime(postUpdated);
+      // Show both full published and updated date
+      fullDate = `Published: ${formatDateTime(postPublished, true)} | Updated: ${formatDateTime(postUpdated, true)}`;
     } else if (postPublished) {
-      // Format PUBLISHED date if only it exists
-      displayDate = formatDateTime(postPublished);
-      fullDate = formatDateTime(postPublished, true);
-    } else if (postUpdated) {
-      // Format UPDATED date if only it exists
-      displayDate = formatDateTime(postUpdated);
-      fullDate = formatDateTime(postUpdated, true);
-    } else {
-      return;
+      // Show formatted published date
+      formattedDate = formatDateTime(postPublished);
+      // Show full published date
+      fullDate = `Published: ${formatDateTime(postPublished, true)}`;
     }
 
     // Insert into the correct spans
-    postElement.querySelector(".formatted-date").textContent = displayDate;
+    postElement.querySelector(".formatted-date").textContent = formattedDate;
     postElement.querySelector(".full-date").textContent = fullDate;
   }
 
