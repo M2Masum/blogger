@@ -77,24 +77,26 @@
 
     if (postPublished && postUpdated) {
       if (postPublished === postUpdated) {
-        // Show only the full published date when both are the same
+        // Show only the full published date if both are the same
         formattedDate = formatDateTime(postPublished);
         fullDate = `Published: ${formatDateTime(postPublished, true)}`;
       } else {
-        // Show formatted updated date and both full published and updated date when different
+        // Show formatted updated date
         formattedDate = formatDateTime(postUpdated);
+        // Show both full published and updated date
         fullDate = `Published: ${formatDateTime(postPublished, true)} | Updated: ${formatDateTime(postUpdated, true)}`;
       }
     } else if (postPublished) {
       // Show formatted published date
       formattedDate = formatDateTime(postPublished);
+      // Show full published date
       fullDate = `Published: ${formatDateTime(postPublished, true)}`;
     }
 
     // Insert into the correct spans
     postElement.querySelector(".formatted-date").textContent = formattedDate;
     postElement.querySelector(".full-date").textContent = fullDate;
-
+    
     // Show full date on hover or click
     const formattedDateElement = postElement.querySelector('.formatted-date');
     const fullDateElement = postElement.querySelector('.full-date');
