@@ -1,4 +1,4 @@
-
+<script>
   function formatTimeAgo(date) {
     const now = new Date();
     const diffMs = now - date;
@@ -73,24 +73,45 @@
     const postPublished = post.published ? post.published.$t : null;
     const postUpdated = post.updated ? post.updated.$t : null;
 
-    let formattedDate = "";
-    let fullDate = "";
-
+    let displayDate, fullDate;
     if (postPublished && postUpdated) {
-      // Show formatted updated date
-      formattedDate = formatDateTime(postUpdated);
-      // Show both full published and updated date
-      fullDate = `Published: ${formatDateTime(postPublished, true)} | Updated: ${formatDateTime(postUpdated, true)}`;
+      // Format only the UPDATED date if both exist
+      displayDate = formatDateTime(postUpdated);
+      fullDate = formatDateTime(postUpdated, true);
     } else if (postPublished) {
-      // Show formatted published date
-      formattedDate = formatDateTime(postPublished);
-      // Show full published date
-      fullDate = `Published: ${formatDateTime(postPublished, true)}`;
+      // Format PUBLISHED date if only it exists
+      displayDate = formatDateTime(postPublished);
+      fullDate = formatDateTime(postPublished, true);
+    } else if (postUpdated) {
+      // Format UPDATED date if only it exists
+      displayDate = formatDateTime(postUpdated);
+      fullDate = formatDateTime(postUpdated, true);
+    } else {
+      return;
     }
 
-    // Insert into the correct spans
-    postElement.querySelector(".formatted-date").textContent = formattedDate;
-    postElement.querySelector(".full-date").textContent = fullDate;
+    // Insert formatted date
+    postElement.querySelector(".formatted-date").textContent = displayDate;
+
+    // Insert full date based on matching logic
+    const publishedFullDate = formatDateTime(postPublished, true);
+    const updatedFullDate = postUpdated ? formatDateTime(postUpdated, true) : null;
+
+    // Logic for showing dates based on match
+    const updatedWrapper = postElement.querySelector(".updated-wrapper");
+    if (postPublished && postUpdated && postPublished !== postUpdated) {
+      // Both dates are available and don't match
+      postElement.querySelector(".full-date").textContent = `${publishedFullDate} | ${updatedFullDate}`;
+    } else if (postPublished && postUpdated && postPublished === postUpdated) {
+      // Both dates match, only show published full date
+      postElement.querySelector(".full-date").textContent = publishedFullDate;
+    } else if (postPublished) {
+      // Only published date available
+      postElement.querySelector(".full-date").textContent = publishedFullDate;
+    } else if (postUpdated) {
+      // Only updated date available
+      postElement.querySelector(".full-date").textContent = updatedFullDate;
+    }
   }
 
   function processVisiblePosts() {
@@ -110,3 +131,4 @@
   observer.observe(document.body, { childList: true, subtree: true });
 
   document.addEventListener("DOMContentLoaded", processVisiblePosts);
+</script>
