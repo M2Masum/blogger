@@ -91,6 +91,26 @@
     // Insert into the correct spans
     postElement.querySelector(".formatted-date").textContent = formattedDate;
     postElement.querySelector(".full-date").textContent = fullDate;
+    
+    // Show full date on hover or click
+    const formattedDateElement = postElement.querySelector('.formatted-date');
+    const fullDateElement = postElement.querySelector('.full-date');
+
+    // Hover to show full date
+    formattedDateElement.addEventListener('mouseenter', () => {
+      fullDateElement.style.display = 'block';
+    });
+
+    // Hover out to hide full date
+    formattedDateElement.addEventListener('mouseleave', () => {
+      fullDateElement.style.display = 'none';
+    });
+
+    // Click to toggle full date visibility
+    formattedDateElement.addEventListener('click', () => {
+      const isVisible = fullDateElement.style.display === 'block';
+      fullDateElement.style.display = isVisible ? 'none' : 'block';
+    });
   }
 
   function processVisiblePosts() {
